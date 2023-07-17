@@ -1,6 +1,7 @@
 import sys
 import os
 libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
+#picdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'pic')
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
@@ -19,16 +20,22 @@ try:
 
     font48 = ImageFont.truetype("Font.ttc", 48)
 
+    logging.info("3.read bmp file")
+    Himage = Image.open('test.bmp')
+    epd.display(epd.getbuffer(Himage))
+    time.sleep(10)
+
+    '''
     #Draw something on the e-ink screen
     Himage = Image.new('1', (epd.width, epd.height), 255)           #Clear the frame (255 = white)
     draw = ImageDraw.Draw(Himage)                                   #Create new image buffer
-    draw.text((40, 40), 'Hello world', font = font48, fill = 0)     #Write text on position 40,40 (x,y) in black
+    #draw.text((40, 40), 'Hello world', font = font48, fill = 0)     #Write text on position 40,40 (x,y) in black
     epd.display(epd.getbuffer(Himage))                              #Display the buffer on the screen
     time.sleep(4)
 
     epd.init()
     epd.Clear()
-    epd.sleep()
+    epd.sleep()'''
 
 except IOError as e:
     logging.info(e)
